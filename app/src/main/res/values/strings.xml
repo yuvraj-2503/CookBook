@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CookBook</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="favourites">Favourites</string>
+    <string name="about_app">About App</string>
+    <string name="contact_us">Contact Us</string>
+
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_app_text">This is an android app, developed for the objective of letting user have complete recipe book containing various dishes of around the world inside one app.\n\n This app has a dashboard screen which shows the user random dishes each time. The user can also mark any dish as favourite and find their favorite dishes in favorite screen. Upon clicking on any dish, user is taken to a description screen which shows the user the steps to cook the dish. \n\nThis app was an assignment under an intern application at <b>ReadingRight</b>. The data has been extracted from the api provided by the company for the assignment.</string>
+
+</resources>
