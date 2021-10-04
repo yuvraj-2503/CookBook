@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".fragment.DashboardFragment">
 
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Food..."
+        android:layout_margin="16dp"
+        android:padding="5dp"
+        android:textSize="16sp"
+        android:backgroundTint="@android:color/transparent"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="5dp"
+        android:inputType="text"
+        android:maxLines="1" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewHomePage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/searchText"
         android:padding="10dp"
         android:layout_margin="5dp"/>
 

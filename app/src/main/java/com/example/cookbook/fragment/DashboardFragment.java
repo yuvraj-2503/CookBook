@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -19,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookbook.R;
+import com.example.cookbook.activity.MainActivity;
 import com.example.cookbook.adapter.DashboardRecyclerAdapter;
 import com.example.cookbook.model.FoodItem;
 import com.example.cookbook.util.ConnectionManager;
@@ -38,6 +42,7 @@ public class DashboardFragment extends Fragment {
     DashboardRecyclerAdapter recyclerAdapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<FoodItem> foodItemArrayList;
+    EditText searchText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +54,7 @@ public class DashboardFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
         layoutManager = new LinearLayoutManager(getActivity());
         foodItemArrayList = new ArrayList<>();
+        searchText= view.findViewById(R.id.searchText);
         RequestQueue queue = Volley.newRequestQueue(requireActivity());
         int rand= (int) (Math.random() * 26);
         char c= (char) ('a' + rand);
@@ -91,6 +97,34 @@ public class DashboardFragment extends Fragment {
                 }
         );
         queue.add(jsonObjectRequest);
+
+        searchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         return view;
+    }
+
+    private void filter(String text){
+        ArrayList<FoodItem> filteredList = new ArrayList<>();
+        for(FoodItem item : foodItemArrayList){
+            if(item.recipeName.toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        recyclerAdapter.filterList(filteredList);
     }
 }

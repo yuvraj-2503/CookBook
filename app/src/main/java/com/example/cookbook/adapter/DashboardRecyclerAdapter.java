@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class DashboardRecyclerAdapter extends RecyclerView.Adapter<DashboardRecyclerAdapter.ViewHolder>{
-    private final ArrayList<FoodItem> itemArrayList;
+    private ArrayList<FoodItem> itemArrayList;
     private final Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -160,5 +160,10 @@ public class DashboardRecyclerAdapter extends RecyclerView.Adapter<DashboardRecy
         public FoodEntity getFoodEntity() {
             return foodEntity;
         }
+    }
+
+    public void filterList(ArrayList<FoodItem> filteredList){
+        itemArrayList = filteredList;
+        notifyDataSetChanged();
     }
 }
